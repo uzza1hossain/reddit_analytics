@@ -7,6 +7,10 @@ name = "pypi"
 django-environ = "*"
 django = "*"
 praw = "*"
+celery = "*"
+redis = "*"
+django-celery-beat = "*"
+django-celery-results = "*"
 
 [dev-packages]
 isort = "*"

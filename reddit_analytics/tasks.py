@@ -1,3 +1,5 @@
+from celery import shared_task
+
 import datetime
 import os
 from pathlib import Path
@@ -23,6 +25,7 @@ subreddit = reddit.subreddit("django")
 last_hour = datetime.datetime.now() - datetime.timedelta(hours=3)
 
 
+@shared_task(name="scrape_submissions")
 def submissions():
     submission_authors = []
     for submission in subreddit.new():
@@ -35,7 +38,7 @@ def submissions():
         submission = models.Submission.objects.create(author=author, count=quantity)
         submission.save()
 
-
+@shared_task(name="scrape_comments")
 def comments():
     comment_authors = []
     for comment in subreddit.comments():

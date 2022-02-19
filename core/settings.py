@@ -49,6 +49,10 @@ INSTALLED_APPS = [
     
     # local apps
     "reddit_analytics",
+    
+    # 3rd party apps
+    'django_celery_beat',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +135,8 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# celery settings
+CELERY_RESULT_BACKEND = "django-db"
+CELERY_BROKER_URL = env('REDIS_URL')
